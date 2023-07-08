@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.glasstask.databinding.TaskviewitemlayoutBinding
 import com.example.glasstask.model.TaskItem
+import com.example.glasstask.utility.formatTimestamp
 
 
 class TaskAdapter : ListAdapter<TaskItem, TaskAdapter.TaskViewHolder>(diffCallback) {
@@ -26,13 +27,7 @@ class TaskAdapter : ListAdapter<TaskItem, TaskAdapter.TaskViewHolder>(diffCallba
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        return TaskViewHolder(
-            TaskviewitemlayoutBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        return TaskViewHolder(TaskviewitemlayoutBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
@@ -40,6 +35,7 @@ class TaskAdapter : ListAdapter<TaskItem, TaskAdapter.TaskViewHolder>(diffCallba
         holder.taskViewItemBinding.apply {
             title.text = currentItem.title
             description.text = currentItem.description
+            timeShow.text = formatTimestamp(currentItem.taskCreateTime)
 
             checkbox.isChecked = currentItem.isComplete
 
@@ -71,6 +67,5 @@ class TaskAdapter : ListAdapter<TaskItem, TaskAdapter.TaskViewHolder>(diffCallba
         fun taskDone(isChecked: Boolean, currentItem: TaskItem)
     }
 
-    class TaskViewHolder(val taskViewItemBinding: TaskviewitemlayoutBinding) :
-        RecyclerView.ViewHolder(taskViewItemBinding.root)
+    class TaskViewHolder(val taskViewItemBinding: TaskviewitemlayoutBinding) : RecyclerView.ViewHolder(taskViewItemBinding.root)
 }

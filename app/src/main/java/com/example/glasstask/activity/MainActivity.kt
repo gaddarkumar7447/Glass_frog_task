@@ -9,7 +9,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import androidx.work.WorkManager
 import com.example.glasstask.R
 import com.example.glasstask.adapter.TaskAdapter
 import com.example.glasstask.database.TaskDataBase
@@ -17,7 +16,6 @@ import com.example.glasstask.databinding.ActivityMainBinding
 import com.example.glasstask.databinding.TakeinputlayoutBinding
 import com.example.glasstask.model.TaskItem
 import com.example.glasstask.repo.Repository
-import com.example.glasstask.utility.createWithCustomLayout
 import com.example.glasstask.utility.showToast
 import com.example.glasstask.viewmodel.TaskViewModel
 import com.example.glasstask.viewmodel.TaskViewModelFactory
@@ -39,12 +37,12 @@ class MainActivity : AppCompatActivity() {
 
         fetchTaskData()
 
-        onItemClick()
+        adapterMethod()
     }
 
 
 
-    private fun onItemClick() {
+    private fun adapterMethod() {
         taskAdapter.setOnItemClickListener(object : TaskAdapter.OnClickListener {
             override fun onClickDeleteItem(taskItem: TaskItem) {
                 taskViewModel.deleteTask(taskItem)
@@ -54,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 val title  = taskItem.title
                 val des = taskItem.description
                 val id = taskItem.id
-                val builder = AlertDialog.Builder(this@MainActivity)
+                val builder = AlertDialog.Builder(this@MainActivity, R.style.CustomAlertDialogStyle)
                 builder.setTitle("Update Task details")
                 val dialogLayout = TakeinputlayoutBinding.inflate(LayoutInflater.from(this@MainActivity))
 
@@ -73,9 +71,12 @@ class MainActivity : AppCompatActivity() {
                 alertDialog.show()
                 alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
                     if (titleUpdate.text.isNotEmpty() && desUpdate.text.isNotEmpty()){
-                        taskViewModel.updateTask(TaskItem(id,titleUpdate.text.toString() , desUpdate.text.toString()))
-
-                        alertDialog.dismiss()
+                        if (desUpdate.text.toString() != des){
+                            taskViewModel.updateTask(TaskItem(id,titleUpdate.text.toString() , desUpdate.text.toString(), System.currentTimeMillis()))
+                            alertDialog.dismiss()
+                        }else{
+                            alertDialog.dismiss()
+                        }
                     }else{
                         showToast("fill all details")
                     }
@@ -87,9 +88,11 @@ class MainActivity : AppCompatActivity() {
                 val des = currentItem.description
                 val id = currentItem.id
 
-                taskViewModel.updateTask(TaskItem(id, title, des, isChecked))
+                taskViewModel.updateTask(TaskItem(id, title, des, System.currentTimeMillis(), isChecked))
+                if (isChecked){
+                    showToast("$title Done \uD83D\uDE0D")
+                }
             }
-
         })
     }
 
@@ -103,13 +106,8 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun initializeViewModel() {
-        val instance = TaskDataBase.getDataBaseInstance(this).getTaskDao()
-        taskViewModel = ViewModelProvider(this, TaskViewModelFactory(Repository(instance)))[TaskViewModel::class.java]
-    }
-
     private fun insertTask() {
-        val builder = AlertDialog.Builder(this)
+        val builder = AlertDialog.Builder(this, R.style.CustomAlertDialogStyle)
         builder.setTitle("Enter Task")
         val dialogLayout = TakeinputlayoutBinding.inflate(LayoutInflater.from(this))
         val title = dialogLayout.taskTitle
@@ -124,16 +122,17 @@ class MainActivity : AppCompatActivity() {
         alertDialog.show()
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
             if (title.text.isNotEmpty() && des.text.isNotEmpty()) {
-                taskViewModel.insertTask(TaskItem(0, title.text.toString(), des.text.toString()))
+                taskViewModel.insertTask(TaskItem(0, title.text.toString(), des.text.toString(), System.currentTimeMillis()))
                 /*dataBinding.root.hideKeyboard()*/
                 alertDialog.cancel()
             } else {
                showToast("fill all details")
             }
         }
+    }
 
-        alertDialog.setTitle("Enter Task")
-        alertDialog.show()
-
+    private fun initializeViewModel() {
+        val instance = TaskDataBase.getDataBaseInstance(this).getTaskDao()
+        taskViewModel = ViewModelProvider(this, TaskViewModelFactory(Repository(instance)))[TaskViewModel::class.java]
     }
 }

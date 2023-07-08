@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.GlassTask" parent="Base.Theme.GlassTask" />
+
+    <style name="CustomAlertDialogStyle" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="android:fontFamily">@font/figtree_medium</item>
+        <item name="android:windowBackground">@color/taskColor</item>
+        <item name="textAllCaps"/>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
 </resources>

@@ -18,22 +18,22 @@ import com.example.glasstask.model.TaskItem
 class TaskClassManager(context: Context, workerParameters: WorkerParameters) : Worker(context, workerParameters) {
 
     override fun doWork(): Result {
-        Log.d("Running", "do work method running")
+        Log.d("Running", "doWork method running")
         val instance = TaskDataBase.getDataBaseInstance(applicationContext).getTaskDao()
         val tasks: List<TaskItem> = instance.getAllTask()
 
         for (task in tasks) {
             val currentTime = System.currentTimeMillis()
             val thirtyMinutesInMillis = 30 * 60 * 1000
-            if (!task.isComplete /*&& task.dueDate - currentTime <= thirtyMinutesInMillis*/) {
-                Log.d("Running", task.toString()+"Inside if")
+
+            if (!task.isComplete && currentTime - task.taskCreateTime <= thirtyMinutesInMillis) {
+                //Log.d("Running", task.toString())
                 showNotification(task)
             }
         }
 
         return Result.success()
     }
-
 
     private fun showNotification(task: TaskItem) {
         val channelId = "task_notification_channel"

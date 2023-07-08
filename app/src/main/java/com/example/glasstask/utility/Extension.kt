@@ -6,6 +6,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 fun Context.showToast(message : String){
@@ -33,4 +36,11 @@ fun AlertDialog.Builder.createWithCustomLayout(
     builder.setNegativeButton("Cancel") { dialogInterface, _ -> dialogInterface.dismiss() }
 
     return builder.create()
+}
+
+fun formatTimestamp(timestamp: Long): String {
+    val dateFormat = SimpleDateFormat("d MMMM h:mm a", Locale.getDefault())
+    val calendar = Calendar.getInstance()
+    calendar.timeInMillis = timestamp
+    return dateFormat.format(calendar.time)
 }
