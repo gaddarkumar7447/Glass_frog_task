@@ -7,20 +7,19 @@
         android:background="@color/white"
         android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            app:cardElevation="10dp"
-            app:cardBackgroundColor="#EBACAC"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:cardCornerRadius="8dp"
+            app:cardBackgroundColor="#eee8f4"
             android:id="@+id/itemCard"
-            android:layout_marginTop="5dp"
-            app:cardCornerRadius="10dp"
-            android:layout_height="wrap_content">
+            app:cardElevation="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:orientation="vertical"
+                android:padding="4dp"
                 android:layout_height="wrap_content">
 
                 <LinearLayout
@@ -28,43 +27,48 @@
                     android:orientation="horizontal"
                     android:layout_height="wrap_content">
 
+                    <CheckBox
+                        android:id="@+id/checkbox"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"/>
+
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:text="Title"
                         android:id="@+id/title"
-                        android:textSize="18dp"
+                        android:layout_width="wrap_content"
+                        android:maxLines="2"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/figtree_bold"
                         android:padding="6dp"
+                        android:text="@string/title"
                         android:textColor="@color/black"
-                        android:layout_height="wrap_content" />
+                        android:textSize="18sp" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:gravity="end"
-                        android:layout_height="match_parent">
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1" />
 
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:id="@+id/deleteTask"
-                            android:gravity="end"
-                            android:src="@drawable/baseline_delete_24"
-                            android:layout_height="match_parent"/>
-
-                    </LinearLayout>
+                    <ImageView
+                        android:id="@+id/deleteTask"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:contentDescription="@string/imagedelete"
+                        android:src="@drawable/baseline_delete_24" />
 
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="match_parent"
-                    android:text="Description"
+                    android:text="@string/description"
                     android:textSize="15sp"
+                    android:fontFamily="@font/figtree_medium"
                     android:padding="6dp"
                     android:textColor="@color/black"
                     android:id="@+id/description"
                     android:layout_height="wrap_content" />
 
-
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
+        </com.google.android.material.card.MaterialCardView>
     </RelativeLayout>
+
 </layout>

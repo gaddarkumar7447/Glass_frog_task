@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Glass Task</string>
+    <string name="floatbutton">floatButton</string>
+    <string name="description">Description</string>
+    <string name="imagedelete">ImageDelete</string>
+    <string name="title">Title</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.glasstask.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -20,6 +21,9 @@ interface TaskDatabaseDao {
     suspend fun deleteTask(taskItem: TaskItem)
 
     @Query("SELECT * FROM taskDatabase")
-    fun getAllTaskData() : List<TaskItem>
+    fun getAllTaskData() : LiveData<List<TaskItem>>
+
+    @Query("SELECT * FROM taskDatabase")
+    fun getAllTask() : List<TaskItem>
 
 }
