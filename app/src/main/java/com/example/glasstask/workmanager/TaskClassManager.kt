@@ -19,10 +19,10 @@ class TaskClassManager(context: Context, workerParameters: WorkerParameters) : W
 
     override fun doWork(): Result {
         Log.d("Running", "doWork method running")
-        val instance = TaskDataBase.getDataBaseInstance(applicationContext).getTaskDao()
-        val tasks: List<TaskItem> = instance.getAllTask()
+        //val instance = TaskDataBase.getDataBaseInstance(applicationContext).getTaskDao()
+        //val tasks: List<TaskItem> = instance.getAllTask()
 
-        for (task in tasks) {
+        /*for (task in tasks) {
             val currentTime = System.currentTimeMillis()
             val thirtyMinutesInMillis = 30 * 60 * 1000
 
@@ -30,7 +30,7 @@ class TaskClassManager(context: Context, workerParameters: WorkerParameters) : W
                 //Log.d("Running", task.toString())
                 showNotification(task)
             }
-        }
+        }*/
 
         return Result.success()
     }

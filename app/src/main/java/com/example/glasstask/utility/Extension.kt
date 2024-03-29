@@ -21,22 +21,6 @@ fun View.hideKeyboard() {
     inputMethodManager.hideSoftInputFromWindow(this.windowToken, 0)
 }
 
-fun AlertDialog.Builder.createWithCustomLayout(
-    context: Context,
-    layoutResId: Int,
-    positiveButtonCallback: () -> Unit
-): AlertDialog {
-    val builder = AlertDialog.Builder(context)
-    builder.setCancelable(false)
-
-    val dialogLayout = LayoutInflater.from(context).inflate(layoutResId, null)
-    builder.setView(dialogLayout)
-
-    builder.setPositiveButton("OK") { _, _ -> positiveButtonCallback.invoke() }
-    builder.setNegativeButton("Cancel") { dialogInterface, _ -> dialogInterface.dismiss() }
-
-    return builder.create()
-}
 
 fun formatTimestamp(timestamp: Long): String {
     val dateFormat = SimpleDateFormat("d MMMM h:mm a", Locale.getDefault())

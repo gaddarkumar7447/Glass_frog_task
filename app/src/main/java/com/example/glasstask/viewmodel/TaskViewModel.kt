@@ -5,10 +5,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.glasstask.model.TaskItem
 import com.example.glasstask.repo.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-
-class TaskViewModel(private val repository: Repository) : ViewModel() {
+@HiltViewModel
+class TaskViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
     fun getAllTask() : LiveData<List<TaskItem>>{
         return repository.getAllTaskData()
     }

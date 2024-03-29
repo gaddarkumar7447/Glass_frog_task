@@ -1,0 +1,5 @@
+com.example.testingkmp.test.shared-androidTest-0 /home/gaddar/AndroidStudioProjects/GlassTask/shared/build/generated/res/resValues/androidTest/debug
+com.example.testingkmp.test.shared-mergeDebugAndroidTestResources-1 /home/gaddar/AndroidStudioProjects/GlassTask/shared/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.example.testingkmp.test.shared-mergeDebugAndroidTestResources-2 /home/gaddar/AndroidStudioProjects/GlassTask/shared/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.example.testingkmp.test.shared-debugAndroidTest-3 /home/gaddar/AndroidStudioProjects/GlassTask/shared/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources
+com.example.testingkmp.test.shared-debug-4 /home/gaddar/AndroidStudioProjects/GlassTask/shared/build/intermediates/packaged_res/debug/packageDebugResources

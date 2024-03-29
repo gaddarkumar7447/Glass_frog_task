@@ -5,4 +5,6 @@
     <string name="imagedelete">ImageDelete</string>
     <string name="title">Title</string>
     <string name="_8_july_7_00_pm">8 july, 7 : 00 PM</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

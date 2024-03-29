@@ -3,8 +3,9 @@ package com.example.glasstask.repo
 import androidx.lifecycle.LiveData
 import com.example.glasstask.database.TaskDatabaseDao
 import com.example.glasstask.model.TaskItem
+import javax.inject.Inject
 
-class Repository(private val taskDatabaseDao: TaskDatabaseDao) {
+class Repository @Inject constructor (private val taskDatabaseDao: TaskDatabaseDao) {
     suspend fun insertTaskData(task : TaskItem){
         taskDatabaseDao.insertTask(task)
     }

@@ -2,13 +2,19 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
     namespace 'com.example.glasstask'
-    compileSdk 33
+    compileSdk 34
+
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.5.5'
+    }
 
     defaultConfig {
+        applicationId "com.plcoding.xmlcomposemigration"
         applicationId "com.example.glasstask"
         minSdk 24
         targetSdk 33
@@ -25,6 +31,7 @@ android {
         }
     }
     buildFeatures{
+        compose true
         dataBinding true
     }
     compileOptions {
@@ -38,28 +45,55 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.activity)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+
+
+    implementation(platform(libs.androidx.compose.bom))
+    androidTestImplementation(platform(libs.androidx.compose.bom))
+
+    implementation(libs.androidx.runtime)
+    implementation(libs.androidx.ui.v164)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.androidx.compiler)
+    implementation(libs.compose.material3)
+    implementation(libs.androidx.foundation.v164)
+    implementation(libs.androidx.foundation.layout)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.runtime.livedata)
+    implementation(libs.androidx.ui.tooling.v164)
+    implementation(libs.androidx.activity.compose.v182)
+
 
     // Room Database
-    implementation 'androidx.room:room-runtime:2.5.2'
-    kapt 'androidx.room:room-compiler:2.5.2'
-    implementation 'androidx.room:room-ktx:2.5.2'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.1'
+    implementation(libs.androidx.room.runtime)
+    kapt(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     // lifecycle
-    def lifecycle_version = "2.5.1"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx.v251)
 
     // WorkManager
     //implementation "androidx.work:work-runtime-ktx:2.8.1"
-    implementation "androidx.work:work-runtime-ktx:2.7.0"
+    implementation(libs.androidx.work.runtime.ktx)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+    annotationProcessor(libs.androidx.hilt.compiler)
+}
+
+kapt {
+    correctErrorTypes true
 }
