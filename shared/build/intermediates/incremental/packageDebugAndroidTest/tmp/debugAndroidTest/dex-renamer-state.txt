@@ -1,10 +1,13 @@
-#Fri Mar 29 15:39:52 IST 2024
+#Sat Mar 30 17:04:08 IST 2024
 base.0=/home/gaddar/AndroidStudioProjects/GlassTask/shared/build/intermediates/dex/debugAndroidTest/mergeExtDexDebugAndroidTest/classes.dex
-base.1=/home/gaddar/AndroidStudioProjects/GlassTask/shared/build/intermediates/dex/debugAndroidTest/mergeLibDexDebugAndroidTest/4/classes.dex
-base.2=/home/gaddar/AndroidStudioProjects/GlassTask/shared/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
+base.1=/home/gaddar/AndroidStudioProjects/GlassTask/shared/build/intermediates/dex/debugAndroidTest/mergeLibDexDebugAndroidTest/0/classes.dex
+base.2=/home/gaddar/AndroidStudioProjects/GlassTask/shared/build/intermediates/dex/debugAndroidTest/mergeLibDexDebugAndroidTest/4/classes.dex
+base.3=/home/gaddar/AndroidStudioProjects/GlassTask/shared/build/intermediates/dex/debugAndroidTest/mergeProjectDexDebugAndroidTest/0/classes.dex
 path.0=classes.dex
-path.1=4/classes.dex
-path.2=0/classes.dex
+path.1=0/classes.dex
+path.2=4/classes.dex
+path.3=0/classes.dex
 renamed.0=classes.dex
 renamed.1=classes2.dex
 renamed.2=classes3.dex
+renamed.3=classes4.dex

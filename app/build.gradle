@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    alias(libs.plugins.jetbrainsCompose)
 }
 
 android {
@@ -92,6 +93,8 @@ dependencies {
     kapt(libs.hilt.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     annotationProcessor(libs.androidx.hilt.compiler)
+
+    implementation (project(":shared"))
 }
 
 kapt {

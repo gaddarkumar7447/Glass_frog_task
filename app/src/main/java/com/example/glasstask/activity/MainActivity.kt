@@ -48,12 +48,12 @@ import com.example.glasstask.repo.Repository
 import com.example.glasstask.utility.showToast
 import com.example.glasstask.viewmodel.TaskViewModel
 import com.example.glasstask.viewmodel.TaskViewModelFactory
+import com.example.shared.Greeting
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var dataBinding: ActivityMainBinding
-
 
     private lateinit var taskViewModel: TaskViewModel
 
@@ -65,7 +65,8 @@ class MainActivity : AppCompatActivity() {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         setContent {
-            MainScreen()
+
+            MainScreen(Greeting().greet())
         }
 
         //initializeViewModel()
@@ -213,7 +214,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     @Composable
-    fun MainScreen() {
+    fun MainScreen(greet: String) {
         val taskViewModel: TaskViewModel = hiltViewModel()
         val data = taskViewModel.getAllTask().observeAsState().value
 
@@ -223,7 +224,7 @@ class MainActivity : AppCompatActivity() {
             floatingActionButton = {
                 Box(
                     modifier = Modifier
-                        .padding(end = 15.dp,  bottom = 15.dp)
+                        .padding(end = 15.dp, bottom = 15.dp)
                         .size(50.dp)
                         .background(color = Color.Gray, shape = CircleShape)
                         .clip(CircleShape)
@@ -239,6 +240,8 @@ class MainActivity : AppCompatActivity() {
             Box(
                 modifier = Modifier.padding(paddingValues)
             ) {
+                Text(text = greet)
+
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxWidth()
